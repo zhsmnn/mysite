@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Волонтёры | Проекты</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f4f7f9;
+    }
+    .hero {
+      background: url('https://via.placeholder.com/1200x500') center/cover no-repeat;
+      color: #ffffff;
+      padding: 100px 20px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #ff6347;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #007bff;
+    }
+    .project-box {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    .project-box h3 {
+      font-size: 1.75rem;
+      color: #007bff;
+    }
+    .project-box p {
+      font-size: 1rem;
+      color: #555;
+    }
+    footer {
+      background: #f8f9fa;
+      padding: 20px 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- Навигация -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">Волонтёры</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a href="{% url 'index' %}" class="nav-link">Главная</a></li>
+          <li class="nav-item"><a href="{% url 'projects' %}" class="nav-link">Проекты</a></li>
+          <li class="nav-item"><a href="{% url 'about' %}"class="nav-link">Организаторам</a></li>
+          <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Отзывы</a></li>
+          <li class="nav-item"><a href="{% url 'register' %}" class="nav-link">Волонтёрам</a></li>
+          {% if user.is_authenticated %}
+          <!-- Показываем ссылку на Профиль только если пользователь авторизован -->
+          <li class="nav-item">
+              <a href="{% url 'profile' %}" class="nav-link">Профиль</a>
+          </li>
+          <!-- Показываем кнопку "Выйти" только на странице профиля -->
+          {% if request.path == '/profile/' %}
+              <li class="nav-item">
+                  <a href="{% url 'logout' %}" class="nav-link">Выйти</a>
+              </li>
+          {% endif %}
+      {% else %}
+          <!-- Показываем ссылки "Вход" и "Регистрация" если пользователь не авторизован -->
+          <li class="nav-item">
+              <a href="{% url 'login' %}" class="nav-link">Вход</a>
+          </li>
+          <li class="nav-item">
+              <a href="{% url 'register' %}" class="nav-link">Регистрация</a>
+          </li>
+      {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Хиро -->
+  <section class="hero">
+    <div class="container">
+      <h1>Наши проекты</h1>
+      <p>Посмотрите проекты, в которых вы можете участвовать.</p>
+    </div>
+  </section>
+
+  <!-- Проекты -->
+  <!-- Проекты -->
+<section class="container py-5">
+  <div class="row">
+    <div class="col-md-4" data-aos="fade-up">
+      <div class="project-box">
+        <h3>Service Learning</h3>
+        <p>Описание первого проекта. Помогите людям с ограниченными возможностями.</p>
+        <a href="https://www.instagram.com/service_almau?igsh=Z2h3aXZ3ZWk5cGdr" class="btn btn-primary" target="_blank">Подробнее</a>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+      <div class="project-box">
+        <h3>Клуб DOS</h3>
+        <p>Описание второго проекта. Помогите организовать сбор вещей для детей в домах ребёнка.</p>
+        <a href="https://www.instagram.com/dos.almau?igsh=YnpkNHo4eHdwdzl0" class="btn btn-primary" target="_blank">Подробнее</a>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+      <div class="project-box">
+        <h3>Приют "Шанс"</h3>
+        <p>Описание третьего проекта. Волонтёрская помощь в приюте для животных.</p>
+        <a href="https://www.instagram.com/priyut_new_chance?igsh=MXdtbzU3ZGt6OTRidA==" class="btn btn-primary" target="_blank">Подробнее</a>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
+      <div class="project-box">
+        <h3>Дом пожилых "Блогодать"</h3>
+        <p>Организация мастер-классов для пожилых людей по цифровой грамотности.</p>
+        <a href="https://www.instagram.com/blagodat_krg.kz?igsh=MWhzNWlwaHA3M3dnaQ==" class="btn btn-primary" target="_blank">Подробнее</a>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="800">
+      <div class="project-box">
+        <h3>Greenteen</h3>
+        <p>Участие в экологических субботниках и посадке деревьев в городских парках.</p>
+        <a href="https://instagram.com/greenteen_project" class="btn btn-primary" target="_blank">Подробнее</a>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="1000">
+      <div class="project-box">
+        <h3>Клуб Lider.kz</h3>
+        <p>Помощь в организации культурных мероприятий для детей из малообеспеченных семей.</p>
+        <a href="https://www.instagram.com/volontery_almaty_lider.kz?igsh=ang0bDBwbjk1ejhy" class="btn btn-primary" target="_blank">Подробнее</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Футер -->
+  <footer>
+    <div class="container text-center">
+      <p class="mb-2 fw-bold">Свяжитесь с нами:</p>
+      <p>
+        <i class="bi bi-telephone-fill"></i> +7 (707) 066 02 30<br>
+        <i class="bi bi-envelope-fill"></i> <a href="mailto:zhrstmvva@icloud.com">zhrstmvva@icloud.com</a>
+      </p>
+      <div class="d-flex justify-content-center gap-3 mt-2">
+        <a href="https://instagram.com/yourprofile" class="btn btn-outline-dark btn-sm" target="_blank">
+          <i class="bi bi-instagram"></i> Instagram
+        </a>
+        <a href="https://t.me/yourprofile" class="btn btn-outline-dark btn-sm" target="_blank">
+          <i class="bi bi-telegram"></i> Telegram
+        </a>
+      </div>
+      <p class="mt-3 text-muted">© 2025 Волонтёры. Все права защищены.</p>
+    </div>
+  </footer>
+  
+
+  <!-- Скрипты -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+</html>
