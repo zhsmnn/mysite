@@ -20,6 +20,7 @@ def about(request):
 def contact(request):
     return render(request, 'main/contact.html')
 
+
 # Регистрация нового пользователя
 def register(request):
     if request.method == 'POST':
